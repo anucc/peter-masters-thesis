@@ -1,0 +1,222 @@
+\documentclass[a4paper,12pt,oldfontcommands]{memoir}
+\PassOptionsToPackage{hyphens}{url}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{doi}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{epstopdf}
+\usepackage{wrapfig}
+\usepackage{natbib}
+\usepackage[acronym,nomain,toc=true]{glossaries}
+\DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
+\newtheorem{hypothesis}{Hypothesis}[chapter]
+
+%
+\OnehalfSpacing*
+\OnehalfSpacing
+%\usepackage{showframe}
+
+\chapterstyle{ell}
+%% Section Headings
+\nouppercaseheads
+\pagestyle{ruled}
+% Section headings
+\setsecheadstyle{\large\sf\raggedright}
+\setsubsecheadstyle{\normalsize\sf\raggedright}
+\setsubsubsecheadstyle{\normalsize\itshape\raggedright}
+% Normal headings
+\makeevenhead{ruled}{\sf\leftmark}{}{}
+\makeoddhead{ruled}{}{}{\sf\rightmark}
+\makeevenfoot{ruled}{\sf\thepage}{}{}
+\makeoddfoot{ruled}{}{}{\sf\thepage}
+% Chapter footer
+\makeevenfoot{plain}{}{\sf\thepage}{}
+\makeoddfoot{plain}{}{\sf\thepage}{}
+% hopefully title page footers
+\makeevenfoot{empty}{}{}{}
+\makeoddfoot{empty}{}{}{}
+% Title page instructions
+\pretitle{\thispagestyle{empty}\begin{flushright}\LARGE\sffamily}
+\posttitle{\par\end{flushright}}
+\preauthor{\begin{flushright}\Large\sffamily}
+\postauthor{\par\end{flushright}\vskip 0.5em}
+\predate{\begin{flushright}\large\sffamily}
+\postdate{\par\end{flushright}\thispagestyle{empty}}
+
+\renewcommand{\partnamefont}{\huge\sffamily}
+\renewcommand{\partnumfont}{\huge\sffamily}
+\renewcommand{\parttitlefont}{\huge\sffamily}
+
+%\setbeforesecskip{-1.5ex plus -.5ex minus -.2ex}
+%\setaftersecskip{1.3ex plus .2ex}
+%\setbeforesubsecskip{-1.25ex plus -.5ex minus -.2ex}
+%\setaftersubsecskip{1ex plus .2ex}
+%% End Section Headings
+%\captionnamefont{\small}
+%\captiontitlefont{\small}
+
+\usepackage[labelfont=sf,font+=small]{caption}
+\usepackage[labelfont=sf]{subcaption}
+
+\usepackage{todonotes}
+
+\renewcommand\bibname{Reference List}
+\setsecnumdepth{subsection}
+\settocdepth{subsection}
+
+% llt: Define a global style for URLs, rather that the default one
+\makeatletter \def\url@leostyle{%
+\@ifundefined{selectfont}{\def\UrlFont{\sf}}{\def\UrlFont{\small\bf\ttfamily}}}
+\makeatother \urlstyle{leo}
+
+
+% Table of contents styles
+\renewcommand{\cftchapterpagefont}{\sffamily}
+\renewcommand{\cftsectionpagefont}{\sffamily}
+\renewcommand{\cftsubsectionpagefont}{\sffamily}
+
+%\renewcommand*{\cftchapterfont}{\normalfont\scshape}
+\renewcommand*{\cftchapterfont}{\bf\sffamily}
+
+% \newcommand{\cftchapterfont}{\sffamily}
+% \newcommand{\cftsectionfont}{\sffamily}
+
+\renewcommand\cftbookpresnum{\sffamily}
+\renewcommand\cftbookaftersnum{\sffamily}
+\renewcommand\cftbookaftersnumb{\sffamily}
+
+\renewcommand\cftpartpresnum{\sffamily}
+\renewcommand\cftpartaftersnum{\sffamily}
+\renewcommand\cftpartaftersnumb{\sffamily}
+
+
+\renewcommand\cftchapterpresnum{\sffamily}
+\renewcommand\cftchapteraftersnum{\sffamily}
+\renewcommand\cftchapteraftersnumb{\sffamily}
+
+\renewcommand\cftsectionpresnum{\sffamily}
+\renewcommand\cftsectionaftersnum{\sffamily}
+\renewcommand\cftsectionaftersnumb{\sffamily}
+
+\renewcommand\cftsubsectionpresnum{\sffamily}
+\renewcommand\cftsubsectionaftersnum{\sffamily}
+\renewcommand\cftsubsectionaftersnumb{\sffamily}
+
+% Acronym entry:
+\newacronym{JIT}{JIT}{Just-In-Time}
+\makeglossaries
+
+\newcommand{\refpageref}[1]{\ref{#1} (p.~\pageref{#1})}
+\newcommand{\sectionpageref}[1]{Section~\ref{#1} (p.~\pageref{#1})}
+\newcommand{\tablepageref}[1]{Table~\ref{#1} (p.~\pageref{#1})}
+\newcommand{\figurepageref}[1]{Figure~\ref{#1} (p.~\pageref{#1})}
+\newcommand{\citepos}[1]{\citeauthor{#1}'s \citeyearpar{#1}}
+% For citing: Author et al.'s (2009) work on hustle and bustle...
+%\newcommand{\gls}[1]{#1} % Fake Glossary command for pandoc
+
+\title{Thesis Title}
+\author{Joe Bloggs}
+%\date{}                                           % Activate to display a given date or no date
+\begin{document}
+\frontmatter
+\maketitle
+
+\pagebreak
+\tableofcontents
+\vfill
+\pagebreak
+\printglossary[type=\acronymtype,title=Abbreviations]
+\vfill
+%\pagebreak
+%\listoffigures
+%\pagebreak
+%\listoftables
+
+\chapter{Abstract}\label{abstract}
+
+Abstract goes here
+
+\subsubsection{Keywords:} 
+keywords, go, here.
+
+\mainmatter
+% Chapter 1
+
+\chapter{Introduction} % Main chapter title
+
+\label{Chapter1} % For referencing the chapter elsewhere, use \ref{Chapter1} 
+
+%----------------------------------------------------------------------------------------
+
+% Define some commands to keep the formatting separated from the content 
+\newcommand{\keyword}[1]{\textbf{#1}}
+\newcommand{\tabhead}[1]{\textbf{#1}}
+\newcommand{\code}[1]{\texttt{#1}}
+\newcommand{\file}[1]{\texttt{\bfseries#1}}
+\newcommand{\option}[1]{\texttt{\itshape#1}}
+
+\section{Introduction}
+The proliferation of streaming data sources such as optical sensors, health tracking sensors, and social networks has increased greatly in the previous 10 years, and with it the the desire to has the desire to understand and analyse this streaming data. The increase in computing power has similarly allowed computing simulations to become increasingly useful as a method of predicting and understanding various processes occurring, whether they be physical, social or purely theoretical.
+
+This thesis seeks to address the problem of having multiple, potentially interrelated, heterogenous computational tasks that are long running or streaming tasks. The problem is broken up into the following parts:
+
+\begin{Enumerate}
+\item Load balancing heterogenous long-running jobs between heterogenous computing hardware
+\item Providing an api for job dependency graph
+\item Providing an inter-job communication api
+\item Providing an intra-job communication api
+\end{Enumerate}
+
+The system is built using Extempore, a high performance lisp environment. This system was originally built for use in real-time cyThe benefits of being built in Extempore include:
+
+\begin{itemize}
+\item Providing a direct access to system devices via its C interoperability
+\item Extempore \gls{JIT} compiles all code via the LLVM compiler to x86 bitcode, providing high performance program execuition
+\item Dynamic code redefinition, allowing extempore processes to be retargeted with new functionality as is required
+\end{itemize}
+
+
+\section{Related Work}
+The focus on performant computing has always been on harnessing multiple processing units into to solve a single task. Technologies have been developed to bulk process data (e.g. Hadoop, spark, storm), to bulk generate and analyse data ((e.eg. MPI)) and to managae the complexity of distributed operations (e.g. SLURM, Zookeeper).
+
+
+\chapter{Literature Review}
+
+\section{Load Balancing}
+
+\section{Dependency Graph}
+
+\section{Inter-Job Communication Systems}
+
+\section{Intra-Job Communication Systems}
+
+\chapter{System Description}
+
+\section{Architecture}
+
+\section{}
+
+\chapter{System Demonstration}
+
+\chapter{Discussion}
+
+\chapter{Conclusion}
+
+
+% Uncomment to add bibliography
+%\bibliographystyle{apa-good-cpm-doi}
+%\bibliography{bibfile}
+
+\appendix
+\appendixpage
+
+\chapter{Appendix}
+
+\listoftodos
+
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
