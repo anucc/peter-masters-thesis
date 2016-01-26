@@ -105,6 +105,7 @@
 
 % Acronym entry:
 \newacronym{JIT}{JIT}{Just-In-Time}
+\newacronym{HPC}{HPC}{High Performance Computing}
 \makeglossaries
 
 \newcommand{\refpageref}[1]{\ref{#1} (p.~\pageref{#1})}
@@ -115,8 +116,8 @@
 % For citing: Author et al.'s (2009) work on hustle and bustle...
 %\newcommand{\gls}[1]{#1} % Fake Glossary command for pandoc
 
-\title{Thesis Title}
-\author{Joe Bloggs}
+\title{Dynamic Load Balancing for Distributed, Interdependent Tasks}
+\author{Peter Davis}
 %\date{}                                           % Activate to display a given date or no date
 \begin{document}
 \frontmatter
@@ -161,12 +162,12 @@ The proliferation of streaming data sources such as optical sensors, health trac
 
 This thesis seeks to address the problem of having multiple, potentially interrelated, heterogenous computational tasks that are long running or streaming tasks. The problem is broken up into the following parts:
 
-\begin{Enumerate}
+\begin{enumerate}
 \item Load balancing heterogenous long-running jobs between heterogenous computing hardware
 \item Providing an api for job dependency graph
 \item Providing an inter-job communication api
 \item Providing an intra-job communication api
-\end{Enumerate}
+\end{enumerate}
 
 The system is built using Extempore, a high performance lisp environment. This system was originally built for use in real-time cyThe benefits of being built in Extempore include:
 
@@ -176,27 +177,110 @@ The system is built using Extempore, a high performance lisp environment. This s
 \item Dynamic code redefinition, allowing extempore processes to be retargeted with new functionality as is required
 \end{itemize}
 
-
-\section{Related Work}
-The focus on performant computing has always been on harnessing multiple processing units into to solve a single task. Technologies have been developed to bulk process data (e.g. Hadoop, spark, storm), to bulk generate and analyse data ((e.eg. MPI)) and to managae the complexity of distributed operations (e.g. SLURM, Zookeeper).
-
-
 \chapter{Literature Review}
 
 \section{Load Balancing}
 
+
+
+Sees load balancing as a task done once by a job router, does not include the idea of redistributing the jobs once they are scheduled.
+\cite{1675365}
+
+``A load balancing algorithm consists of three components.
+
+1) The information policy specifies the amount of load
+and job information made available to the job placement
+decision maker(s), and the way by which the information
+is distributed.
+2) The transfer policy determines the eligibility of a
+job for load balancing based on the job and the loads of
+the hosts.
+3) The placement policy decides, for eligible jobs, the
+hosts to which the jobs should be transferred.''
+\cite{6176}
+
+\subsection{Dynamic vs Static}
+
+
+\cite{alakeel2010guide}
+
+Dynamic vs static definition
+\cite{1702040}
+
+\cite{Anshelevich:2002:SLB:509907.509968}
+
+Queuing system M/M/n
+
+\cite{121756}
+
+\subsection{Centralised vs Decentralised}
+
+``In a centralized load balancing system, the global load information is collected at a single node, called the central scheduler. The other nodes, called local nodes, send their load status messages to the central scheduler. All load balancing decisions are made at the central scheduler based on the collected messages.
+
+In a decentralized load balancing system, each node broadcasts its load information periodically to the other nodes to update their locally maintained load tables. Every node performs its node selection action. This can be done by having every node keep track of the global system load status continually.
+''
+\cite{472412}
+
+``The scalability of the centralized algorithms,
+GLOBAL and CENTRAL, however, is also
+very good, at least up to 49 hosts. In constrast, DISTED
+scales quite badly. We can see two conflicting factors in
+action. On the one hand, an increase in system size makes
+it easier to find a lightly loaded host. On the other hand,
+the message overhead per host grows linearly with system
+size, The composite effect is a moderately rising curve for
+the normalized response time.''
+\cite{6176}
+
+
+Centralised 
+\cite{121756}
+
+
+\subsection{Homogenous vs Heterogenous Jobs}
+
+
+
+\subsection{Homogenous vs Heterogenous Hardware}
+
+uses homogenous system
+\cite{6176}
+
+
+\subsection{Measuring Load}
+
+Traditional \gls{HPC} tasks are typically CPU bound, requiring processing power to (for example) advance their simulations forward in time, whilst Big Data tasks are typically memory and storage bound.
+
+Measuring multiple load sources
+\cite{1039771}
+
+
 \section{Dependency Graph}
 
-\section{Inter-Job Communication Systems}
+\section{Communication Systems}
 
-\section{Intra-Job Communication Systems}
+\subsection{Inter-Job}
 
+Actor 
+
+Channel
+
+\subsection{Intra-Job}
+
+MPI
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{System Description}
 
 \section{Architecture}
 
-\section{}
+\section{Master Controller}
 
+\section{Job Controller}
+
+\section{Worker}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{System Demonstration}
 
 \chapter{Discussion}
@@ -205,8 +289,8 @@ The focus on performant computing has always been on harnessing multiple process
 
 
 % Uncomment to add bibliography
-%\bibliographystyle{apa-good-cpm-doi}
-%\bibliography{bibfile}
+\bibliographystyle{unsrtnat}
+\bibliography{references}
 
 \appendix
 \appendixpage
